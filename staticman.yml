@@ -1,0 +1,22 @@
+comments:
+  # (*) REQUIRED
+  allowedFields: ["name", "email", "mail", "url", "message", "replyto", "user", "subdomain", "domain", "record", "type-A", "type-AAAA", "type-CNAME", "type-NS", "mcodeword"]
+  branch: "master"
+  filename: "{fields.replyto}entry{@timestamp}"
+  path: "_user/subdomain/{options.slug}"
+    
+  # (*) OPTIONAL?
+  commitMessage: "Add subdomain request from {fields.name} at {fields.url}"
+  format: "yaml"
+  allowedOrigins: ["kiwichat.ml"]
+  bannedDomains: ["https://bit.ly"]
+  generatedFields:
+    date:
+      type: date
+      options:
+        format: "timestamp-seconds"
+  moderation: true
+  name: "KiwiChat SubDomain Request"
+  requiredFields: ["name", "email", "message", "codeword"]
+  transforms:
+    email: md5
